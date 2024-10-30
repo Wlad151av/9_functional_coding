@@ -3,16 +3,17 @@ class StepValueError(ValueError):
 
 class Iterator:
     def __init__(self, start, stop, step=1):
-        self.pointer = start
-        self.start = start
-        self.stop = stop
         if step != 0:
             self.step = step
         else:
             raise StepValueError()
+        self.pointer = start
+        self.start = start
+        self.stop = stop
+
 
     def __iter__(self):
-        self.pointer = self.start
+        self.pointer = self.start - self.step
         return self
 
     def __next__(self):
